@@ -4,7 +4,8 @@
   "description": "bubble effect with javascript canvas",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "dev": "node webpack-dev-server.js"
   },
   "author": "gaokai",
   "license": "ISC",
