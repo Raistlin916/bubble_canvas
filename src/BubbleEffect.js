@@ -40,7 +40,21 @@ export default class BubbleEffect {
       const offsetCoord = this.translatePageToOffsetCoord(standardEvent)
       this.bubble.moveTo(offsetCoord)
     }
+    this.startListener = e => {
+      const standardEvent = standardizeEvent(e)
+      const offsetCoord = this.translatePageToOffsetCoord(standardEvent)
+      this.bubble.blow()
+      this.bubble.moveTo(offsetCoord)
+    }
+    this.endListener = e => {
+      this.bubble.loose()
+    }
+    this.canvas.addEventListener('mousedown', this.startListener)
     this.canvas.addEventListener('mousemove', this.moveListener)
+    this.canvas.addEventListener('mouseup', this.endListener)
+    this.canvas.addEventListener('touchstart', this.startListener)
+    this.canvas.addEventListener('touchmove', this.moveListener)
+    this.canvas.addEventListener('touchend', this.endListener)
   }
 
   translatePageToOffsetCoord(e) {
@@ -73,7 +87,12 @@ export default class BubbleEffect {
   }
 
   destroy() {
+    this.canvas.removeEventListener('mousedown', this.startListener)
     this.canvas.removeEventListener('mousemove', this.moveListener)
+    this.canvas.removeEventListener('mouseup', this.endListener)
+    this.canvas.addEventListener('touchstart', this.startListener)
+    this.canvas.addEventListener('touchmove', this.moveListener)
+    this.canvas.addEventListener('touchend', this.endListener)
     cancelAnimationFrame(this.rid)
   }
 }
