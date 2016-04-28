@@ -9,3 +9,4 @@ coverImg.onload = () => {
   bubbleEffect.init()
 }
 
+window.addEventListener('touchmove', e => e.preventDefault())
