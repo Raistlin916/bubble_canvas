@@ -1,5 +1,4 @@
-function back(progress, x) {
-  x = 1.3
+function back(progress, x = 1.3) {
   return Math.pow(progress, 2) * ((x + 1) * progress - x)
 }
 

@@ -8,3 +8,4 @@ const bubbleEffect = new BubbleEffect(canvas, coverImg)
 coverImg.onload = () => {
   bubbleEffect.init()
 }
+
